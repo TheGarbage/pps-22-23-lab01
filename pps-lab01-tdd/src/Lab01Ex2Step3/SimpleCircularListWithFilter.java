@@ -2,11 +2,10 @@ package Lab01Ex2Step3;
 
 import lab01.tdd.SimpleCircularList;
 
-import javax.print.DocFlavor;
 import java.util.Optional;
 
 public class SimpleCircularListWithFilter extends SimpleCircularList {
-    public enum condition{MAGGIORE, MAGGIORE_UGUALE, UGUALE, MINORE, MINORE_UGUALE}
+    public enum condition{GREATER, GREATER_OR_EQUAL, EQUAL, MINOR, MINOR_OR_EQUAL}
 
     public Optional<Integer> filteredNext(condition condition, int referenced_number) {
         Optional<Integer> optional;
@@ -18,23 +17,23 @@ public class SimpleCircularListWithFilter extends SimpleCircularList {
             else
                 break;
             switch (condition) {
-                case MAGGIORE:
+                case GREATER:
                     if(nextNumber > referenced_number)
                         return optional;
                     break;
-                case MAGGIORE_UGUALE:
+                case GREATER_OR_EQUAL:
                     if(nextNumber >= referenced_number)
                         return optional;
                     break;
-                case UGUALE:
+                case EQUAL:
                     if(nextNumber == referenced_number)
                         return optional;
                     break;
-                case MINORE:
+                case MINOR:
                     if(nextNumber < referenced_number)
                         return optional;
                     break;
-                case MINORE_UGUALE:
+                case MINOR_OR_EQUAL:
                     if(nextNumber <= referenced_number)
                         return optional;
                     break;
