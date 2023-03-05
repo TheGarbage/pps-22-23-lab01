@@ -11,7 +11,6 @@ public class CircularListWithFilterTest extends CircularIteratorTest{
     SimpleCircularListWithFilter simpleCircularListWithFilter;
     private final int[] ARRAY_TEST = {1,2,3,4,5,6,7,8};
     private final int REFERED_RIGHT_NUMBER = 4;
-    private final int REFERED_WRONG_NUMBER = -1;
 
     public void initializzation(){
         simpleCircularListWithFilter = new SimpleCircularListWithFilter();
@@ -67,7 +66,7 @@ public class CircularListWithFilterTest extends CircularIteratorTest{
 
         @Test
         public void testWrongFilterAfterMultiplePush(){
-            assertEquals(Optional.empty(), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.MINOR, REFERED_WRONG_NUMBER));
+            assertEquals(Optional.empty(), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.MINOR, -1));
         }
     }
 }
