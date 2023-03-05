@@ -13,57 +13,60 @@ public class CircularListWithFilterTest extends CircularIteratorTest{
     private final int REFERED_RIGHT_NUMBER = 4;
     private final int REFERED_WRONG_NUMBER = -1;
 
+    public void initializzation(){
+        simpleCircularListWithFilter = new SimpleCircularListWithFilter();
+    }
+
     @Nested
-    class TestFilter{
+    class TestFilterEmpty {
         @BeforeEach
-        public void beforeEach(){
-            simpleCircularListWithFilter = new SimpleCircularListWithFilter();
+        public void beforeEach() {
+            initializzation();
         }
 
         @Test
-        public void testFilterEmpty(){
+        public void testFilterEmpty() {
             assertEquals(Optional.empty(), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.GREATER, REFERED_RIGHT_NUMBER));
+        }
+
+    }
+
+    @Nested
+    class TestFilterAfterMultiplePush{
+        @BeforeEach
+        public void beforeEach() {
+            initializzation();
+            for(int number : ARRAY_TEST)
+                simpleCircularListWithFilter.add(number);
         }
 
         @Test
         public void testRightGreaterOrEqualFilterAfterMultiplePush(){
-            for(int number : ARRAY_TEST)
-                simpleCircularListWithFilter.add(number);
             assertEquals(Optional.of(5), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.GREATER, REFERED_RIGHT_NUMBER));
         }
 
         @Test
         public void testRightGreaterFilterAfterMultiplePush(){
-            for(int number : ARRAY_TEST)
-                simpleCircularListWithFilter.add(number);
             assertEquals(Optional.of(4), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.GREATER_OR_EQUAL, REFERED_RIGHT_NUMBER));
         }
 
         @Test
         public void testRightEqualFilterAfterMultiplePush(){
-            for(int number : ARRAY_TEST)
-                simpleCircularListWithFilter.add(number);
             assertEquals(Optional.of(4), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.EQUAL, REFERED_RIGHT_NUMBER));
         }
 
         @Test
         public void testRightMinorOrEqualFilterAfterMultiplePush(){
-            for(int number : ARRAY_TEST)
-                simpleCircularListWithFilter.add(number);
             assertEquals(Optional.of(2), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.MINOR_OR_EQUAL, REFERED_RIGHT_NUMBER));
         }
 
         @Test
         public void testRightMinorFilterAfterMultiplePush(){
-            for(int number : ARRAY_TEST)
-                simpleCircularListWithFilter.add(number);
             assertEquals(Optional.of(2), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.MINOR, REFERED_RIGHT_NUMBER));
         }
 
         @Test
         public void testWrongFilterAfterMultiplePush(){
-            for(int number : ARRAY_TEST)
-                simpleCircularListWithFilter.add(number);
             assertEquals(Optional.empty(), simpleCircularListWithFilter.filteredNext(SimpleCircularListWithFilter.condition.MINOR, REFERED_WRONG_NUMBER));
         }
     }
